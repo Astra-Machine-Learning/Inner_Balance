@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mental Health Podcast Search</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6f8;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .search-box {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    .search-box input {
+      padding: 10px 15px;
+      width: 70%;
+      border: 1px solid #ccc;
+      border-radius: 8px 0 0 8px;
+      font-size: 16px;
+      outline: none;
+    }
+    .search-box button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .episode-card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .episode-card h3 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .episode-card p {
+      color: #555;
+      font-size: 14px;
+    }
+    .like-btn, .remove-btn {
+      align-self: flex-start;
+      font-size: 14px;
+    }
+    .like-btn {
+      background-color: #ff4081;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .liked {
+      background-color: #4caf50 !important;
+    }
+    .remove-btn {
+      background-color: #e74c3c;
+      color: white;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .import-export {
+      text-align: center;
+      margin: 30px 0;
+    }
+    audio {
+      width: 100%;
+    }
+    #loading {
+      text-align: center;
+      display: none;
+      font-weight: bold;
+    }
+    @media (max-width: 600px) {
+      .search-box input {
+        width: 60%;
+      }
+      .search-box button {
+        width: 40%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎷 Mental Health Podcast Search</h1>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search mental health topics...">
+      <button onclick="searchPodcasts()">Search</button>
+    </div>
+    <div id="loading">Searching...</div>
+    <div id="podcastResults"></div>
+    <hr>
+    <h2>⭐ Saved Favorites</h2>
+    <div id="favoriteList"></div>
+    <div class="import-export">
+      <h3>📄 Export Favorites</h3>
+      <button onclick="exportFavorites()">Export Favorites</button>
+    </div>
+    <hr>
+    <h2>🎵 Your Top Spotify Tracks</h2>
+    <div id="topTracks"></div>
+  </div>
+  <script>
+    const API_KEY = "REPLACE_WITH_YOUR_VALID_API_KEY"; // Replace with your real Listen Notes API key
+
+    function searchPodcasts() {
+      const query = document.getElementById("searchInput").value.trim();
+      const resultsContainer = document.getElementById("podcastResults");
+      const loadingText = document.getElementById("loading");
+
+      if (!query) return;
+
+      resultsContainer.innerHTML = "";
+      loadingText.style.display = "block";
+
+      fetch(`https://listen-api.listennotes.com/api/v2/search?q=${encodeURIComponent(query)}`, {
+        headers: { "X-ListenAPI-Key": API_KEY }
+      })
+      .then(response => response.json())
+      .then(data => {
+        loadingText.style.display = "none";
+        if (data.results.length === 0) {
+          resultsContainer.innerHTML = "<p>No episodes found.</p>";
+          return;
+        }
+        let html = "";
+        data.results.forEach(episode => {
+          html += renderEpisodeCard(episode, false);
+        });
+        resultsContainer.innerHTML = html;
+      })
+      .catch(error => {
+        loadingText.style.display = "none";
+        resultsContainer.innerHTML = "<p>Error fetching podcasts.</p>";
+        console.error(error);
+      });
+    }
+
+    function renderEpisodeCard(episode, isFavorite = false) {
+      const favorites = getFavorites();
+      const alreadySaved = favorites.find(ep => ep.id === episode.id);
+      const buttonText = alreadySaved ? "✔️ Saved" : "❤️ Like";
+
+      const favButton = isFavorite
+        ? `<button class="remove-btn" onclick="removeFromFavorites('${episode.id}')">Remove from Favorites</button>`
+        : `<button class="like-btn ${alreadySaved ? 'liked' : ''}" onclick='saveToFavorites(${JSON.stringify(episode)})'>${buttonText}</button>`;
+
+      return `
+        <div class="episode-card" id="ep-${episode.id}">
+          <h3>${episode.title_original}</h3>
+          <p>${episode.description_original}</p>
+          <audio controls src="${episode.audio}"></audio>
+          ${favButton}
+        </div>
+      `;
+    }
+
+    function saveToFavorites(episode) {
+      let favorites = getFavorites();
+      if (favorites.find(ep => ep.id === episode.id)) {
+        alert("Already saved.");
+        return;
+      }
+      favorites.push(episode);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      loadFavorites();
+      searchPodcasts();
+    }
+
+    function removeFromFavorites(id) {
+      let favorites = getFavorites();
+      favorites = favorites.filter(ep => ep.id !== id);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      loadFavorites();
+    }
+
+    function loadFavorites() {
+      const favList = document.getElementById("favoriteList");
+      const favorites = getFavorites();
+      if (favorites.length === 0) {
+        favList.innerHTML = "<p>No saved favorites yet.</p>";
+        return;
+      }
+      let html = "";
+      favorites.forEach(ep => {
+        html += renderEpisodeCard(ep, true);
+      });
+      favList.innerHTML = html;
+    }
+
+    function getFavorites() {
+      return JSON.parse(localStorage.getItem("favorites")) || [];
+    }
+
+    function exportFavorites() {
+      const favorites = getFavorites();
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(favorites, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "my_favorite_podcasts.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      document.body.removeChild(downloadAnchor);
+    }
+
+    const token = 'BQDeTbQHaEd4hBoM-z9XqrBt3rq6PQB2AVWrzCBleMz38tgjV9yfvlYBqWokUnJQkN5zUkeuEpNKs4y5PfkhWB4kZqSBc4mTk1s8mZjVoTpFuCemypebNFP5Vg702LacJWnY1aRyU0p6NnnvsyYGxcp78qOOzIja6syIeZJ2KWvxJbmcipkQawqJ6PU-2-s-TzefxoMUzGTp_ou6anA4S4qbOQKtmzNNwPfbR7lY9qEy6aIusZaGK8SVH9qJulqnPz8WqozG2jWZsBeaGACyyl-DNcNhyqQ-SCsJkDeDPOEv_YAOiMWBj0Nu';
+
+    async function fetchWebApi(endpoint, method, body) {
+      const res = await fetch(`https://api.spotify.com/${endpoint}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        method,
+        body: JSON.stringify(body)
+      });
+      return await res.json();
+    }
+
+    async function getTopTracks() {
+      return (await fetchWebApi(
+        'v1/me/top/tracks?time_range=long_term&limit=5', 'GET'
+      )).items;
+    }
+
+    async function loadTopTracks() {
+      const topTracks = await getTopTracks();
+      const topTracksContainer = document.getElementById("topTracks");
+      if (topTracks.length === 0) {
+        topTracksContainer.innerHTML = "<p>No top tracks found.</p>";
+        return;
+      }
+      let html = "<ul>";
+      topTracks.forEach(track => {
+        html += `<li>${track.name} by ${track.artists.map(artist => artist.name).join(', ')}</li>`;
+      });
+      html += "</ul>";
+      topTracksContainer.innerHTML = html;
+    }
+
+    window.onload = function() {
+      loadFavorites();
+      loadTopTracks();
+    };
+  </script>
+</body>
+</html>
