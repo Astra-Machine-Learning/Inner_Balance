@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Questions</title>
+    <style>
+        .question {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        .try-this-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .try-this-btn:hover {
+            background-color: #45a049;
+        }
+        .suggestion {
+            display: none;
+            margin-left: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-left: 3px solid #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4">
+            <!-- Question 1 -->
+            <div class="question" id="text1">
+                Are you battling financial stress?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion1')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion1">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Create a Budget:</b> Spend 15 minutes listing your income and expenses to regain control.</li>
+                    <li><b>Walk it Off:</b> Take a 20-minute walk to clear your mind from money worries.</li>
+                    <li><b>Organize Your Space:</b> Declutter your desk or wallet for 10 minutes to feel more in charge.</li>
+                </ul>
+                <strong>Text Insight:</strong> Financial stress can feel suffocating, but breaking it into manageable steps can ease the burden. You’re not alone—many have navigated this and found relief.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/live/B8QUg0PNG_Y?si=mLnQCb0ZHgauX2f2" target="_blank">“How I Overcame Financial Stress” by The Financial Diet</a> - Practical tips from someone who’s been there.
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question" id="text2">
+                Is drug addiction overwhelming you?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion2')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion2">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Reach Out:</b> Call a friend or helpline (e.g., SAMHSA: 1-800-662-HELP) for 5 minutes.</li>
+                    <li><b>Move Your Body:</b> Do a 10-minute workout to shift your focus.</li>
+                    <li><b>Hydrate:</b> Drink a glass of water slowly to ground yourself.</li>
+                </ul>
+                <strong>Text Insight:</strong> Addiction is a tough battle, but every small step toward help is a victory. You’re stronger than you think.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/watch?v=66cYcSak6nE" target="_blank">“My Addiction Recovery Story” by CG Kid</a> - A raw, inspiring journey to sobriety.
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" id="text3">
+                Do you feel trapped by anxiety?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion3')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion3">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Grounding Technique:</b> Name 5 things you see, 4 you feel, 3 you hear for 2 minutes.</li>
+                    <li><b>Stretch:</b> Do a 5-minute neck and shoulder stretch to release tension.</li>
+                    <li><b>Cold Water Splash:</b> Splash your face with cold water to reset your nervous system.</li>
+                </ul>
+                <strong>Text Insight:</strong> Anxiety can feel like a cage, but simple actions can unlock the door. You’ve got this—one breath at a time.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/watch?v=8vkYJfmcgXW" target="_blank">“How I Manage My Anxiety” by Kati Morton</a> - A therapist’s personal and professional tips.
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" id="text4">
+                Is loneliness breaking you down?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion4')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion4">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Connect:</b> Text or call someone you trust for a 5-minute chat.</li>
+                    <li><b>Go Outside:</b> Sit in a park for 15 minutes to feel less isolated.</li>
+                    <li><b>Pet Time:</b> Spend 10 minutes with a pet or watch animal videos to lift your mood.</li>
+                </ul>
+                <strong>Text Insight:</strong> Loneliness can be heavy, but even small connections can lighten it. You deserve to feel seen.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/watch?v=n3Xv_g3g-mA" target="_blank">“Loneliness Does Not Come From Having No People Around” by The School of Life</a> - Insightful take on loneliness.
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" id="text5">
+                Are you struggling with depression?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion5')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion5">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Get Moving:</b> Walk or dance for 10 minutes to boost endorphins.</li>
+                    <li><b>Sunlight:</b> Sit by a window or outside for 15 minutes.</li>
+                    <li><b>Small Win:</b> Make your bed or wash a dish to feel accomplished.</li>
+                </ul>
+                <strong>Text Insight:</strong> Depression can dim everything, but tiny steps can spark light. You’re not alone in this fight.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/watch?v=2VRRx7Mtep8" target="_blank">“Living with Depression” by Psych2Go</a> - Animated, relatable advice.
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question" id="text6">
+                Does work stress exhaust you?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion6')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion6">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Break Time:</b> Step away for 5 minutes to breathe deeply.</li>
+                    <li><b>Desk Stretch:</b> Do a 3-minute seated stretch routine.</li>
+                    <li><b>Write It Down:</b> Jot down tasks for 5 minutes to offload your mind.</li>
+                </ul>
+                <strong>Text Insight:</strong> Work stress can drain you, but pausing can recharge you. You’re doing enough.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://youtu.be/dfmDstkm67s?si=bih4ZoBhZ-l_QnCF" target="_blank">“How to Handle Work Stress” by Amy Landino</a> - Practical strategies from a productivity expert.
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question" id="text7">
+                Are family issues weighing on you?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion7')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion7">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Journal:</b> Write your feelings for 10 minutes to process them.</li>
+                    <li><b>Walk Away:</b> Take a 15-minute walk to cool off.</li>
+                    <li><b>Breathe:</b> Do a 2-minute box breathing exercise (4-4-4-4).</li>
+                </ul>
+                <strong>Text Insight:</strong> Family tension can feel endless, but stepping back can bring clarity. You’re not the only one struggling with this.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/watch?v=5e8gTypXyOk" target="_blank">“Dealing with Family Conflict” by Kati Morton</a> - A therapist’s guide to family dynamics.
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question" id="text8">
+                Is sleep loss affecting your mind?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion8')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion8">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Wind Down:</b> Read or listen to calm music for 15 minutes before bed.</li>
+                    <li><b>No Screens:</b> Avoid devices 30 minutes before sleep.</li>
+                    <li><b>Stretch:</b> Do a 5-minute bedtime stretch to relax your body.</li>
+                </ul>
+                <strong>Text Insight:</strong> Lack of sleep can cloud your mind, but a routine can restore it. You deserve rest.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/watch?v=5MuIMqhT3DM" target="_blank">“How to Fall Asleep Fast” by Dr. Tracey Marks</a> - A psychiatrist’s sleep tips.
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question" id="text9">
+                Do social pressures feel unbearable?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion9')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion9">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Unplug:</b> Take a 20-minute break from social media.</li>
+                    <li><b>Move:</b> Do a 10-minute dance or jog to shake off pressure.</li>
+                    <li><b>Affirm:</b> Say “I am enough” 5 times in front of a mirror.</li>
+                </ul>
+                <strong>Text Insight:</strong> Social expectations can crush you, but you can rise above them. You’re not defined by others.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/watch?v=8-6DXqKhg9Q" target="_blank">“Overcoming Social Pressure” by Psych2Go</a> - Animated insights on breaking free.
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question" id="text10">
+                Are you haunted by past trauma?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion10')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion10">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Safe Space:</b> Sit in a quiet spot with a comforting object for 10 minutes.</li>
+                    <li><b>Breathe:</b> Try 5 minutes of diaphragmatic breathing.</li>
+                    <li><b>Ground:</b> Hold an ice cube for 30 seconds to stay present.</li>
+                </ul>
+                <strong>Text Insight:</strong> Trauma can linger, but you can find peace in the present. You’re a survivor.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/watch?v=26wVNEEXg88" target="_blank">“Healing from Trauma” by Kati Morton</a> - A therapist’s approach to recovery.
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question" id="text11">
+                Do you feel overwhelmed by uncertainty?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion11')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion11">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>List It:</b> Write 3 things you can control today in 5 minutes.</li>
+                    <li><b>Walk:</b> Take a 15-minute walk to reset your thoughts.</li>
+                    <li><b>Meditate:</b> Do a 5-minute mindfulness exercise.</li>
+                </ul>
+                <strong>Text Insight:</strong> Uncertainty can paralyze, but focusing on now can steady you. You’re capable of handling this.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/watch?v=4kiVz0xLUcQ" target="_blank">“Dealing with Uncertainty” by The School of Life</a> - Philosophical comfort.
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question" id="text12">
+                Is self-doubt holding you back?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion12')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion12">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Power Pose:</b> Stand tall with hands on hips for 2 minutes.</li>
+                    <li><b>Write Wins:</b> List 3 things you’ve done well in 5 minutes.</li>
+                    <li><b>Move:</b> Do a 10-minute workout to boost confidence.</li>
+                </ul>
+                <strong>Text Insight:</strong> Self-doubt can whisper lies, but your actions can shout truth. You’re more than enough.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/watch?v=Rz8KW4TvhmI" target="_blank">“Overcoming Self-Doubt” by Amy Cuddy</a> - TED Talk on confidence.
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question" id="text13">
+                Are you finding it hard to stay motivated?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion13')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion13">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Start Small:</b> Do one tiny task (e.g., make tea) in 5 minutes.</li>
+                    <li><b>Music Boost:</b> Listen to an upbeat song and dance for 3 minutes.</li>
+                    <li><b>Fresh Air:</b> Step outside for 10 minutes to recharge.</li>
+                </ul>
+                <strong>Text Insight:</strong> Motivation ebbs, but small wins can reignite it. You’ve got momentum waiting.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/watch?v=ZXsQBKWnz4A" target="_blank">“How to Get Motivated” by Thomas Frank</a> - Actionable productivity tips.
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question" id="text14">
+                Does anger control your reactions?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion14')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion14">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Cool Down:</b> Step away and count to 10 slowly.</li>
+                    <li><b>Punch a Pillow:</b> Release energy safely for 1 minute.</li>
+                    <li><b>Breathe:</b> Do 5 minutes of deep breathing (4-7-8 method).</li>
+                </ul>
+                <strong>Text Insight:</strong> Anger can hijack you, but you can steer it back. You’re in control, not it.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/watch?v=sbVBdRkkiG0" target="_blank">“How to Control Anger” by Psych2Go</a> - Simple anger management techniques.
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question" id="text15">
+                Are you struggling to find purpose?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion15')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion15">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Reflect:</b> Write what matters to you for 10 minutes.</li>
+                    <li><b>Help Someone:</b> Do a 5-minute kind act for a spark.</li>
+                    <li><b>Explore:</b> Try a new hobby for 15 minutes.</li>
+                </ul>
+                <strong>Text Insight:</strong> Purpose can feel lost, but it’s often found in small moments. You’re on the path.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/watch?v=vVsXO9brK7M" target="_blank">“Finding Your Purpose” by Jay Shetty</a> - Wisdom on life’s meaning.
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question" id="text16">
+                Is grief consuming your thoughts?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion16')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion16">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Honor Them:</b> Light a candle or write a letter for 10 minutes.</li>
+                    <li><b>Walk:</b> Take a 15-minute walk to process emotions.</li>
+                    <li><b>Cry:</b> Let tears flow for 5 minutes—it’s okay.</li>
+                </ul>
+                <strong>Text Insight:</strong> Grief can swallow you, but it’s part of loving deeply. You’re healing, slowly.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/watch?v=gsYL4PC0xxk" target="_blank">“The Truth About Grief” by The School of Life</a> - Comforting insights on loss.
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question" id="text17">
+                Do you feel disconnected from others?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion17')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion17">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Reach Out:</b> Message a friend for a 5-minute chat.</li>
+                    <li><b>Join In:</b> Attend a local event or online group for 20 minutes.</li>
+                    <li><b>Smile:</b> Smile at a stranger today—it’s a start.</li>
+                </ul>
+                <strong>Text Insight:</strong> Disconnection stings, but bridges can be built. You’re worthy of connection.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/watch?v=5e8gTypXyOk" target="_blank">“Feeling Disconnected?” by Kati Morton</a> - Tips to reconnect.
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question" id="text18">
+                Are you battling constant overthinking?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion18')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion18">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Brain Dump:</b> Write all thoughts for 5 minutes to clear them.</li>
+                    <li><b>Focus Shift:</b> Do a 10-minute puzzle or craft.</li>
+                    <li><b>Breathe:</b> Try 3 minutes of alternate nostril breathing.</li>
+                </ul>
+                <strong>Text Insight:</strong> Overthinking can trap you, but you can break the cycle. Your mind can rest.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/watch?v=T1r94rO4kaw" target="_blank">“Stop Overthinking” by Psych2Go</a> - Practical steps to quiet your mind.
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question" id="text19">
+                Is low energy draining your spirit?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion19')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion19">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Eat a Snack:</b> Have a banana or nuts for a quick boost.</li>
+                    <li><b>Move:</b> Do a 5-minute jump or stretch session.</li>
+                    <li><b>Nap:</b> Take a 20-minute power nap if possible.</li>
+                </ul>
+                <strong>Text Insight:</strong> Low energy can dim your spark, but fueling up can reignite it. You’ve got vitality inside.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/watch?v=5MuIMqhT3DM" target="_blank">“Boost Your Energy” by Dr. Tracey Marks</a> - Science-backed energy tips.
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question" id="text20">
+                Are you struggling with stress?
+                <button class="try-this-btn" onclick="toggleSuggestion('suggestion20')">Try This</button>
+            </div>
+            <div class="suggestion" id="suggestion20">
+                <strong>Physical Actions:</strong>
+                <ul>
+                    <li><b>Deep Breathing:</b> Inhale 4 sec, hold 4, exhale 4—repeat 5 minutes.</li>
+                    <li><b>Walk:</b> Take a 15-minute walk outside.</li>
+                    <li><b>Stretch:</b> Do a 10-minute stretch to release tension.</li>
+                </ul>
+                <strong>Text Insight:</strong> Stress can weigh you down, but you can lift it off. You’re tougher than it.<br><br>
+                <strong>YouTube Resource:</strong><br>
+                <a href="https://www.youtube.com/watch?v=hnpQrMqDoqE" target="_blank">“How to Make Stress Your Friend” by Kelly McGonigal</a> - TED Talk on reframing stress.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSuggestion(suggestionId) {
+            var suggestion = document.getElementById(suggestionId);
+            if (suggestion.style.display === "block") {
+                suggestion.style.display = "none";
+            } else {
+                suggestion.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
+
+<!-- This is a simple HTML page that provides a list of mental health questions with suggestions for physical actions and YouTube resources. Each question has a button that, when clicked, reveals the corresponding suggestions and resources. The page uses basic CSS for styling and JavaScript for interactivity.
+The questions cover a range of mental health topics, including financial stress, addiction, anxiety, loneliness, depression, work stress, family issues, sleep loss, social pressures, trauma, and more. Each suggestion includes physical actions that can be taken to help alleviate the issue at hand. The YouTube resources provide additional support and insights on each topic.
+
+ -->
+</body>
+</html>
